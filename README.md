@@ -72,4 +72,42 @@ Perbedaan utama antara Stateless dan stateful widget adalah dalam cara mereka me
 
 9. Berbagai widget dalam `MyHomePage` seperti `Padding`, `Column`, `Text`, `Icon`, `Container`, dan sebagainya digunakan untuk merancang tampilan halaman utama dengan pemformatan yang sesuai.
 
->3. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial)
+>3. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
+1. Buat website flutter baru dengan tema inventory dengan langkah-langkah seperti pada tutorial 6.
+2. Buat tiga tombol sederhana (Lihat item, Tambah item, dan Logout).
+
+        final List<ShopItem> items = [
+            ShopItem("Lihat Item", Icons.checklist, Colors.green),
+            ShopItem("Tambah Item", Icons.add_shopping_cart, Colors.red),
+            ShopItem("Logout", Icons.logout, Colors.yellow),
+        ];
+
+3. Memunculkan snackbar ketika ketiga tombol tersebut ditekan. 
+            onTap: () {
+          // Memunculkan SnackBar ketika diklik
+          ScaffoldMessenger.of(context)
+            ..hideCurrentSnackBar()
+            ..showSnackBar(SnackBar(
+                content: Text("Kamu telah menekan tombol ${item.name}!")));
+
+4. BONUS (mengimplementasikan warna-warna yang berbeda untuk setiap tombol (Lihat Item, Tambah Item, dan Logout).
+        
+        final List<ShopItem> items = [
+            ShopItem("Lihat Item", Icons.checklist, Colors.green),
+            ShopItem("Tambah Item", Icons.add_shopping_cart, Colors.red),
+            ShopItem("Logout", Icons.logout, Colors.yellow),
+        ];
+
+        class ShopItem {
+            final String name;
+            final IconData icon;
+            final Color color; //tambahkan property color
+
+            ShopItem(this.name, this.icon, this.color);
+        }
+
+        @override
+        Widget build(BuildContext context) {
+            return Material(
+                color: item.color, //warna dari properti ShopItem
+                //...
