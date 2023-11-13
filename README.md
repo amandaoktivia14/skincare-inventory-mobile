@@ -111,7 +111,7 @@ digunakan untuk menambahkan route baru ke navigator stack (memungkinkan pengguna
 - [x] Navigator.pushReplacement() 
 menggantikan route saat ini dalam navigator stack dengan route baru, efektif menghapus route saat ini dari stack (ketika menggunakan Navigator.pushReplacement(), pengguna tidak dapat kembali ke layar sebelumnya menggunakan tombol kembali, karena layar sebelumnya dihapus dari stack).  
  
-Contoh:
+Contoh penerapan:
 
    dalam sebuah aplikasi Flutter, jika pengguna perlu berpindah dari Layar A ke Layar B, dan kemudian dari Layar B ke Layar C, menggunakan Navigator.push() akan menambahkan Layar C ke stack yang memungkinkan pengguna untuk kembali ke Layar B. 
    
