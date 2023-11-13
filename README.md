@@ -97,3 +97,59 @@ Perbedaan utama antara Stateless dan stateful widget adalah dalam cara mereka me
             return Material(
                 color: item.color, //warna dari properti ShopItem
                 //...
+
+
+## Tugas 8: Flutter Navigation, Layouts, Forms, and Input Elements
+
+ >1. Jelaskan perbedaan antara Navigator.push() dan Navigator.pushReplacement(), disertai dengan contoh mengenai penggunaan kedua metode tersebut yang tepat!
+
+Navigator.push() dan Navigator.pushReplacement() adalah metode navigasi yang digunakan dalam pengembangan aplikasi Flutter. Berikut penjelasan mengenai perbedaan kedua metode tersebut serta penerapannya. 
+
+- [x] Navigator.push() 
+digunakan untuk menambahkan route baru ke navigator stack (memungkinkan pengguna untuk berpindah ke layar baru sambil tetap mempertahankan layar sebelumnya di memori).
+
+- [x] Navigator.pushReplacement() 
+menggantikan route saat ini dalam navigator stack dengan route baru, efektif menghapus route saat ini dari stack (ketika menggunakan Navigator.pushReplacement(), pengguna tidak dapat kembali ke layar sebelumnya menggunakan tombol kembali, karena layar sebelumnya dihapus dari stack).  
+ 
+Contoh:
+      dalam sebuah aplikasi Flutter, jika pengguna perlu berpindah dari Layar A ke Layar B, dan kemudian dari Layar B ke Layar C, menggunakan Navigator.push() akan menambahkan Layar C ke stack yang memungkinkan pengguna untuk kembali ke Layar B. 
+      
+      Namun, jika Navigator.pushReplacement() digunakan untuk berpindah dari Layar B ke Layar C, Layar B akan digantikan oleh Layar C dalam stack, dan pengguna tidak akan dapat kembali ke Layar B.  
+ 
+
+>2. Jelaskan masing-masing layout widget pada Flutter dan konteks penggunaannya masing-masing!
+
+1. **Row Widget:**
+   - Konteks Penggunaan: untuk penempatan widget berdampingan, seperti ikon atau teks horizontal.
+
+2. **Column Widget:**
+   - Konteks Penggunaan: untuk penempatan widget berurutan dari atas ke bawah.
+
+3. **Stack Widget:**
+   - Konteks Penggunaan: untuk penempatan widget di atas satu sama lain, seperti overlay teks di atas gambar.
+
+4. **Expanded Widget:**
+   - Konteks Penggunaan: memberi ukuran seimbang atau proporsional dalam widget Row atau Column.
+
+5. **ListView Widget:**
+   - Konteks Penggunaan: untuk menampilkan daftar data dinamis.
+
+6. **GridView Widget:**
+   - Konteks Penggunaan: untuk menampilkan koleksi data dalam format grid.
+
+7. **Flexible Widget:**
+   - Konteks Penggunaan: untuk memberikan proporsi tertentu dari ruang yang tersedia kepada widget dalam tata letak fleksibel.
+
+
+>3. Sebutkan apa saja elemen input pada form yang kamu pakai pada tugas kali ini dan jelaskan mengapa kamu menggunakan elemen input tersebut!
+
+>4. Bagaimana penerapan clean architecture pada aplikasi Flutter?
+
+ Dalam konteks Flutter, penerapan clean architecture melibatkan penggunaan konsep seperti Entities, Use Cases, dan Interface Adapters. 
+ 1. **Entities:** merepresentasikan objek domain atau model bisnis
+ 2. **Use Cases:** berisi aturan bisnis
+ 3. **Interface Adapters:** bertanggung jawab untuk menghubungkan bagian-bagian sistem seperti database atau UI dengan core business logic. 
+
+Penerapan clean architecture pada Flutter juga memungkinkan penggunaan pola desain seperti BLoC (Business Logic Component) untuk mengelola state dan logika aplikasi, pola desain ini memungkinkan pemisahan antara tampilan dan logika bisnis, sehingga memudahkan pengujian dan pemeliharaan kode.  
+
+>5. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step! (bukan hanya sekadar mengikuti tutorial)
