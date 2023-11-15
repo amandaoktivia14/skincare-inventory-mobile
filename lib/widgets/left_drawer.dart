@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:skincare_inventory/screens/menu.dart';
 import 'package:skincare_inventory/screens/shoplist_form.dart';
+import 'package:skincare_inventory/screens/see_product.dart';
 
 class LeftDrawer extends StatelessWidget {
   const LeftDrawer({super.key});
@@ -12,7 +13,7 @@ class LeftDrawer extends StatelessWidget {
         children: [
           const DrawerHeader(
             decoration: BoxDecoration(
-            color: Colors.indigo,
+            color: Colors.pink,
             ),
             child: Column(
               children: [
@@ -54,9 +55,26 @@ class LeftDrawer extends StatelessWidget {
             title: const Text('Tambah Produk'),
             // Bagian redirection ke ShopFormPage
             onTap: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => const ShopFormPage()));
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ShopFormPage()
+                  ));
             },
           ),
+          ListTile(
+            leading: const Icon(Icons.movie),
+            title: const Text('Lihat Produk'),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) =>
+                        ProductListPage(products: productList)),
+
+              );
+            },
+          ),   
         ],
       ),
     );

@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:skincare_inventory/widgets/left_drawer.dart';
 import 'package:skincare_inventory/widgets/shop_card.dart';
+import 'package:skincare_inventory/screens/shoplist_form.dart';
 
 class MyHomePage extends StatelessWidget {
   MyHomePage({Key? key}) : super(key: key);
 
  final List<ShopItem> items = [
-    ShopItem("Lihat Item", Icons.checklist, Colors.green),
-    ShopItem("Tambah Item", Icons.add_shopping_cart, Colors.red),
-    ShopItem("Logout", Icons.logout, Colors.yellow),
+    ShopItem("Lihat Item", Icons.checklist),
+    ShopItem("Tambah Item", Icons.add_shopping_cart),
+    ShopItem("Logout", Icons.logout),
  ];
 
   @override
@@ -16,9 +17,9 @@ class MyHomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'Shopping List',
+          'Skincare Inventory',
         ),
-        backgroundColor: Colors.indigo,
+        backgroundColor: Colors.pink,
         foregroundColor: Colors.white,
       ),
       drawer: const LeftDrawer(),
