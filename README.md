@@ -144,6 +144,34 @@ Contoh penerapan:
 
 >3. Sebutkan apa saja elemen input pada form yang kamu pakai pada tugas kali ini dan jelaskan mengapa kamu menggunakan elemen input tersebut!
 
+1. **TextFormField untuk Nama:**
+   - Input ini digunakan untuk memasukkan nama produk skincare.
+   - Validasi memastikan bahwa nama tidak boleh kosong dan harus terdiri dari huruf, bukan angka, karena nama biasanya berisi karakter alfabet.
+
+2. **TextFormField untuk Jumlah:**
+   - Input ini digunakan untuk memasukkan jumlah produk yang tersedia.
+   - Validasi pada input ini memastikan bahwa jumlah tidak boleh kosong dan harus berupa angka, yang penting untuk manajemen inventaris produk.
+
+3. **TextFormField untuk Deskripsi:**
+   - Input ini digunakan untuk memasukkan deskripsi produk skincare.
+   - Ini memungkinkan teks bebas namun memastikan bahwa deskripsi tidak boleh kosong dan tidak boleh berupa angka, karena deskripsi harus berisi kalimat atau frase yang menjelaskan produk dengan baik.
+
+4. **TextFormField untuk Gambar:**
+   - Input ini digunakan untuk memasukkan URL gambar produk skincare.
+   - Validasi memastikan bahwa bidang ini tidak boleh kosong dan memeriksa bahwa inputan adalah URL yang valid.
+
+5. **TextFormField untuk Harga:**
+   - Input ini digunakan untuk memasukkan harga produk skincare.
+   - Seperti input jumlah, ini harus berupa angka dan tidak boleh kosong, yang penting untuk penentuan harga produk.
+
+6. **TextFormField untuk Kategori:**
+   - Input ini digunakan untuk memasukkan kategori produk skincare.
+   - Validasi memastikan bahwa kategori tidak boleh kosong dan harus berupa kata atau frasa yang sesuai dengan kategori produk.
+
+Selain itu, ada sebuah tombol ElevatedButton yang digunakan untuk mengirimkan form setelah semua validasi terpenuhi. Ketika tombol ditekan, form akan memvalidasi inputan, dan jika semuanya benar, informasi produk akan disimpan ke daftar produk dan menampilkan dialog konfirmasi.
+
+Semua elemen input ini dipilih karena mereka memungkinkan pengguna untuk memasukkan berbagai jenis data yang diperlukan untuk menciptakan entri produk yang lengkap dan valid. Validasi pada setiap bidang memastikan bahwa data yang dimasukkan sesuai dengan tipe data yang diperlukan untuk setiap atribut produk.
+
 >4. Bagaimana penerapan clean architecture pada aplikasi Flutter?
 
  Dalam konteks Flutter, penerapan clean architecture melibatkan penggunaan konsep seperti Entities, Use Cases, dan Interface Adapters. 
@@ -154,3 +182,14 @@ Contoh penerapan:
 Penerapan clean architecture pada Flutter juga memungkinkan penggunaan pola desain seperti BLoC (Business Logic Component) untuk mengelola state dan logika aplikasi, pola desain ini memungkinkan pemisahan antara tampilan dan logika bisnis, sehingga memudahkan pengujian dan pemeliharaan kode.  
 
 >5. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step! (bukan hanya sekadar mengikuti tutorial)
+
+1. Membuat minimal satu halaman baru pada aplikasi, yaitu halaman formulir tambah item baru
+
+2. Mengarahkan pengguna ke halaman form tambah item baru ketika menekan tombol Tambah Item pada halaman utama.
+
+3. Memunculkan data sesuai isi dari formulir yang diisi dalam sebuah pop-up setelah menekan tombol Save pada halaman formulir tambah item baru.
+
+4. Membuat sebuah drawer pada aplikasi dengan ketentuan sebagai berikut: Drawer minimal memiliki dua buah opsi, yaitu Halaman Utama dan Tambah Item, Ketika memiih opsi Halaman Utama, maka aplikasi akan mengarahkan pengguna ke halaman utama, Ketika memiih opsi (Tambah Item), maka aplikasi akan mengarahkan pengguna ke halaman form tambah item baru.
+
+
+
