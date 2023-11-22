@@ -192,4 +192,106 @@ Penerapan clean architecture pada Flutter juga memungkinkan penggunaan pola desa
 4. Membuat sebuah drawer pada aplikasi dengan ketentuan sebagai berikut: Drawer minimal memiliki dua buah opsi, yaitu Halaman Utama dan Tambah Item, Ketika memiih opsi Halaman Utama, maka aplikasi akan mengarahkan pengguna ke halaman utama, Ketika memiih opsi (Tambah Item), maka aplikasi akan mengarahkan pengguna ke halaman form tambah item baru.
 
 
+## Tugas 9: 
 
+>1. Apakah bisa kita melakukan pengambilan data JSON tanpa membuat model terlebih dahulu? Jika iya, apakah hal tersebut lebih baik daripada membuat model sebelum melakukan pengambilan data JSON?
+
+Tentu, dalam pengembangan aplikasi Flutter, ada opsi untuk mengambil data dalam format JSON tanpa harus membuat model terlebih dahulu. Data JSON ini dapat diambil dan dikelola langsung dalam bentuk `Map<String, dynamic>` atau `List<Map<String, dynamic>>`, tergantung pada struktur data JSON yang diterima. Meskipun memungkinkan, pendekatan ini mungkin tidak selalu merupakan pilihan yang paling ideal, dan ada beberapa alasan untuk mempertimbangkan penggunaan model:
+
+**1. Ketidakefisienan:** Mengelola data JSON langsung memerlukan penanganan manual untuk setiap field data, yang dapat menjadi rumit dan rawan kesalahan. Penggunaan model memungkinkan Anda untuk mengatur struktur data dengan lebih baik.
+
+**2. Ketidakrapihan Kode:** Ketika Anda bekerja dengan data JSON secara langsung, kode Anda mungkin menjadi kurang rapi dan sulit dibaca karena Anda harus melakukan banyak mapping manual. Model membantu menjaga kebersihan dan keterbacaan kode.
+
+**3. Ketidakamanan Tipe Data:** Tanpa model, tidak ada jaminan keamanan tipe data. Kesalahan tipe data dapat terjadi karena struktur data JSON hanya diketahui pada saat runtime. Dengan model, Anda dapat memastikan keamanan tipe data.
+
+**4. Skalabilitas dan Pemeliharaan:** Dengan penggunaan model, memperbarui atau mengubah struktur data menjadi lebih mudah dan terpusat. Ini memungkinkan Anda untuk memelihara dan mengembangkan aplikasi dengan lebih efisien.
+
+Berikut adalah perbandingan antara pengambilan data JSON tanpa membuat model terlebih dahulu dan penggunaan model:
+
+| Aspek                       | Tanpa Model                                     | Dengan Model                                    |
+|-----------------------------|-------------------------------------------------|-------------------------------------------------|
+| Ketidakefisienan            | Tinggi, memerlukan penanganan manual            | Rendah, model mengelola struktur data            |
+| Ketidakrapihan Kode         | Kode kurang rapi dan sulit dibaca               | Kode lebih rapi dan mudah dibaca                |
+| Ketidakamanan Tipe Data    | Tinggi, keamanan tipe data tidak terjamin       | Rendah, model menyediakan keamanan tipe data    |
+| Skalabilitas dan Pemeliharaan | Rendah, sulit memperbarui atau mengubah struktur data | Tinggi, mudah memperbarui atau mengubah struktur data |
+
+Dalam banyak kasus, menggunakan model untuk mengelola data adalah praktik yang lebih baik, terutama dalam pengembangan aplikasi yang lebih besar atau kompleks. Ini membantu meningkatkan kualitas, keamanan, dan keterbacaan kode aplikasi Anda.
+
+>2. Jelaskan fungsi dari CookieRequest dan jelaskan mengapa instance CookieRequest perlu untuk dibagikan ke semua komponen di aplikasi Flutter.
+
+`CookieRequest` adalah sebuah kelas yang digunakan untuk mengelola HTTP requests dalam konteks aplikasi Flutter sambil menjaga dan mengelola cookies. Hal ini memiliki peran penting dalam menjaga autentikasi dan sesi yang berkelanjutan dalam aplikasi. Berikut adalah deskripsi tentang fungsionalitas dan kebutuhan dari instance `CookieRequest` dalam aplikasi Flutter:
+
+**Fungsi dan Kebutuhan dari Instance `CookieRequest` dalam Aplikasi Flutter:**
+
+| Aspek               | Keterangan                                                         |
+|---------------------|-------------------------------------------------------------------|
+| Mengelola Cookies   | Bertugas untuk mengelola cookies yang diperlukan dalam setiap permintaan (request) dan respon HTTP. Cookies ini penting dalam menyimpan informasi autentikasi dan sesi.                        |
+| Persistensi Sesi    | Memungkinkan aplikasi untuk menjaga sesi pengguna tetap aktif selama aplikasi tetap terbuka. Ini penting agar pengguna tidak harus melakukan autentikasi ulang setiap saat. |
+| Konsistensi Sesi    | Menjaga konsistensi dalam sesi pengguna dengan memastikan bahwa setiap permintaan yang dilakukan dalam konteks sesi tertentu tetap menggunakan sesi yang sama.        |
+| Efisiensi           | Menghindari pembuatan instance `CookieRequest` yang berlebihan. Hal ini membantu dalam meminimalkan penggunaan sumber daya dan mempertahankan efisiensi aplikasi. |
+
+Dengan menggunakan `CookieRequest`, aplikasi Flutter dapat dengan efektif mengelola cookies, mempertahankan sesi pengguna, dan memastikan konsistensi dalam setiap permintaan HTTP. Hal ini sangat berguna dalam konteks autentikasi dan menjaga pengalaman pengguna yang konsisten dalam aplikasi Anda.
+
+>3. Jelaskan mekanisme pengambilan data dari JSON hingga dapat ditampilkan pada Flutter.
+
+Cara-cara untuk mengambil data dari JSON dan menampilkannya di dalam aplikasi Flutter melibatkan beberapa langkah penting:
+
+1. Mengambil Data:
+   - Lakukan HTTP request, biasanya dengan metode GET, untuk mengambil data JSON dari layanan web.
+   
+2. Mengubah Data JSON menjadi Objek Dart:
+   - Terjemahkan data JSON yang diterima menjadi objek Dart. Ini dapat dilakukan dengan cara:
+     - Menggunakan model Dart yang telah dibuat sebelumnya yang sesuai dengan struktur JSON.
+     - Mengonversi data JSON secara langsung menjadi Map atau List, bergantung pada struktur JSON yang ada.
+   
+3. Pemanfaatan Data:
+   - Gunakan data yang telah diubah menjadi objek Dart untuk mengisi state atau variabel dalam aplikasi Flutter. Data ini dapat digunakan baik untuk tampilan langsung maupun untuk logika tambahan di dalam aplikasi.
+   
+4. Menampilkan Data:
+   - Tampilkan data yang telah diubah dalam aplikasi menggunakan berbagai widget yang disediakan oleh Flutter. Sebagai contoh:
+     - Gunakan ListView.builder untuk menampilkan daftar data dengan cara yang efisien.
+     - Gunakan widget Text atau Card untuk menampilkan detail data sesuai kebutuhan aplikasi.
+
+Dengan mengikuti langkah-langkah ini, Anda dapat dengan mudah mengintegrasikan data JSON ke dalam aplikasi Flutter Anda dan menampilkannya sesuai dengan kebutuhan.
+
+>4. Jelaskan mekanisme autentikasi dari input data akun pada Flutter ke Django hingga selesainya proses autentikasi oleh Django dan tampilnya menu pada Flutter.
+
+Proses autentikasi antara aplikasi Flutter dan backend Django melibatkan serangkaian langkah penting untuk memastikan keamanan dan kelancaran pertukaran data.
+
+1. Input Data Pengguna:
+   - Pengguna mengisi data akun mereka, seperti username dan password, di dalam aplikasi Flutter.
+
+2. Pengiriman ke Django:
+   - Aplikasi Flutter mengirimkan data akun ini ke backend Django menggunakan HTTP request, yang umumnya menggunakan metode POST.
+
+3. Proses di Django:
+   - Backend Django menerima data yang dikirimkan dan melakukan proses autentikasi. Ini mencakup pemeriksaan data pengguna dengan database untuk memastikan kesesuaian.
+
+4. Respon Kembali ke Flutter:
+   - Setelah selesai memproses data, Django mengirimkan respons kembali ke aplikasi Flutter. Respons ini bisa berupa konfirmasi keberhasilan autentikasi atau pemberitahuan kegagalan autentikasi.
+
+5. Tampilan di Flutter:
+   - Berdasarkan respons yang diterima dari Django, aplikasi Flutter kemudian menampilkan hasil autentikasi kepada pengguna. Jika autentikasi berhasil, mungkin akan membuka halaman menu utama atau dashboard. Namun, jika autentikasi gagal, aplikasi mungkin akan menampilkan pesan kesalahan atau meminta pengguna untuk mencoba lagi.
+
+Dengan mengikuti langkah-langkah ini, Anda dapat memastikan bahwa proses autentikasi antara aplikasi Flutter dan backend Django berjalan dengan aman dan efisien.
+
+>5. Sebutkan seluruh widget yang kamu pakai pada tugas ini dan jelaskan fungsinya masing-masing.
+
+Widget yang digunakan dalam tugas ini dan peran masing-masing adalah sebagai berikut:
+
+1. Scaffold: 
+   - Berfungsi untuk membentuk kerangka dasar tampilan aplikasi, termasuk app bar, body, dan bottom navigation jika diperlukan.
+
+2. ListView.builder:
+   - Digunakan untuk membuat daftar elemen secara dinamis berdasarkan data yang diberikan. Ini memungkinkan tampilan daftar yang efisien dan hanya membangun elemen yang terlihat.
+
+3. TextFormField:
+   - Berperan dalam mengumpulkan input teks dari pengguna. Ini adalah widget yang ideal untuk mengambil data masukan seperti teks, email, atau password.
+
+4. ElevatedButton:
+   - Merupakan tombol yang digunakan untuk menginisiasi tindakan tertentu, seperti mengirimkan formulir. Ini memudahkan pengguna untuk berinteraksi dengan aplikasi dengan melakukan tindakan spesifik.
+
+5. FutureBuilder:
+   - Mengambil hasil dari interaksi dengan Future (biasanya dalam bentuk permintaan jaringan atau pemrosesan data asinkron). Widget ini memungkinkan pembangunan UI yang dinamis berdasarkan hasil yang diambil dari Future, memungkinkan tampilan yang responsif sesuai dengan proses yang sedang berlangsung.
+
+Dengan memahami peran masing-masing widget ini, Anda dapat merancang tampilan aplikasi Flutter Anda dengan lebih baik dan meningkatkan fungsionalitasnya sesuai dengan kebutuhan proyek Anda.
