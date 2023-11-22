@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:skincare_inventory/screens/shoplist_form.dart';
 import 'package:skincare_inventory/screens/see_product.dart';
+import 'package:skincare_inventory/screens/list_product.dart';
 
 class ShopItem {
   final String name;
@@ -47,13 +48,10 @@ class ShopCard extends StatelessWidget {
               MaterialPageRoute(builder: (context) => ShopFormPage()),
             );
           }
-          if (item.name == "Lihat Produk") {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => ProductListPage(products: productList)),
-            );
-          }
+          else if (item.name == "Lihat Produk") {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => const ProductPage()));
+                }
         },
         child: Container(
           // Container untuk menyimpan Icon dan Text
