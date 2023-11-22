@@ -2,6 +2,7 @@ import 'package:skincare_inventory/screens/menu.dart';
 import 'package:flutter/material.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
+import 'package:skincare_inventory/screens/register.dart';
 
 void main() {
     runApp(const LoginApp());
@@ -32,6 +33,7 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
     final TextEditingController _usernameController = TextEditingController();
     final TextEditingController _passwordController = TextEditingController();
+     bool _passwordVisible = false;
 
     @override
     Widget build(BuildContext context) {
@@ -49,16 +51,33 @@ class _LoginPageState extends State<LoginPage> {
                             controller: _usernameController,
                             decoration: const InputDecoration(
                                 labelText: 'Username',
+                                prefixIcon: Icon(Icons.person),
                             ),
+                            
                         ),
                         const SizedBox(height: 12.0),
                         TextField(
-                            controller: _passwordController,
-                            decoration: const InputDecoration(
-                                labelText: 'Password',
-                            ),
-                            obscureText: true,
-                        ),
+              controller: _passwordController,
+              decoration: InputDecoration(
+                labelText: 'Password',
+                prefixIcon: Icon(Icons.lock),
+                suffixIcon: IconButton(
+                  icon: Icon(
+                    // change the icon based on the password visibility
+                    _passwordVisible
+                        ? Icons.visibility
+                        : Icons.visibility_off,
+                  ),
+                  onPressed: () {
+                    // password visibility state
+                    setState(() {
+                      _passwordVisible = !_passwordVisible;
+                    });
+                  },
+                ),
+              ),
+              obscureText: !_passwordVisible,
+            ),
                         const SizedBox(height: 24.0),
                         ElevatedButton(
                             onPressed: () async {
@@ -69,7 +88,7 @@ class _LoginPageState extends State<LoginPage> {
                                 // TODO: Ganti URL dan jangan lupa tambahkan trailing slash (/) di akhir URL!
                                 // Untuk menyambungkan Android emulator dengan Django pada localhost,
                                 // gunakan URL http://10.0.2.2/
-                                final response = await request.login("http://<APP_URL_KAMU>/auth/login/", {
+                                final response = await request.login("http://127.0.0.1:8000/auth/login/", {
                                 'username': username,
                                 'password': password,
                                 });
@@ -106,9 +125,30 @@ class _LoginPageState extends State<LoginPage> {
                             },
                             child: const Text('Login'),
                         ),
+                        const SizedBox(height: 20.0),
+                        Text(
+                        "Belum Punya Akun?",
+                      ),
+                      InkWell(
+                        onTap: () {
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    RegisterPage()), // Navigate to login page
+                          );
+                        },
+                        child: Text(
+                          'Register',
+                          style: TextStyle(
+                            fontSize: 14.0,
+                            decoration: TextDecoration.underline,
+                          ),
+                        ),
+                      ),
                     ],
+                  ),
                 ),
-            ),
         );
     }
 }

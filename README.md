@@ -192,7 +192,7 @@ Penerapan clean architecture pada Flutter juga memungkinkan penggunaan pola desa
 4. Membuat sebuah drawer pada aplikasi dengan ketentuan sebagai berikut: Drawer minimal memiliki dua buah opsi, yaitu Halaman Utama dan Tambah Item, Ketika memiih opsi Halaman Utama, maka aplikasi akan mengarahkan pengguna ke halaman utama, Ketika memiih opsi (Tambah Item), maka aplikasi akan mengarahkan pengguna ke halaman form tambah item baru.
 
 
-## Tugas 9: 
+## Tugas 9: Integrasi Layanan Web Django dengan Aplikasi Flutter
 
 >1. Apakah bisa kita melakukan pengambilan data JSON tanpa membuat model terlebih dahulu? Jika iya, apakah hal tersebut lebih baik daripada membuat model sebelum melakukan pengambilan data JSON?
 

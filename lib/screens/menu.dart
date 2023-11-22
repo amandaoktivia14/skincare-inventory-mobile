@@ -1,31 +1,31 @@
-import 'package:flutter/material.dart';
 import 'package:skincare_inventory/widgets/left_drawer.dart';
+import 'package:flutter/material.dart';
 import 'package:skincare_inventory/widgets/shop_card.dart';
-import 'package:skincare_inventory/screens/shoplist_form.dart';
 
 class MyHomePage extends StatelessWidget {
   MyHomePage({Key? key}) : super(key: key);
 
- final List<ShopItem> items = [
-    ShopItem("Lihat Item", Icons.checklist),
-    ShopItem("Tambah Item", Icons.add_shopping_cart),
-    ShopItem("Logout", Icons.logout),
- ];
+  final List<ShopItem> items = [
+    ShopItem("Lihat Produk", Icons.checklist, Colors.indigo),
+    ShopItem("Tambah Produk", Icons.add_shopping_cart, Colors.cyan),
+    ShopItem("Logout", Icons.logout, Colors.pink),
+  ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'Skincare Inventory',
+            'Skincare Inventory',
+          ),
+          backgroundColor: Colors.indigo,
+          foregroundColor: Colors.white,
         ),
-        backgroundColor: Colors.pink,
-        foregroundColor: Colors.white,
-      ),
-      drawer: const LeftDrawer(),
-      body: SingleChildScrollView(
-        // Widget wrapper yang dapat discroll
-        child: Padding(
+          // Masukkan drawer sebagai parameter nilai drawer dari widget Scaffold
+          drawer: const LeftDrawer(),
+          body: SingleChildScrollView(
+            // Widget wrapper yang dapat discroll
+            child: Padding(
           padding: const EdgeInsets.all(10.0), // Set padding dari halaman
           child: Column(
             // Widget untuk menampilkan children secara vertikal

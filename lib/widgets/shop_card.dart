@@ -1,64 +1,68 @@
 import 'package:flutter/material.dart';
-import 'package:skincare_inventory/screens/shoplist_form.dart';
-import 'package:skincare_inventory/screens/see_product.dart';
 import 'package:skincare_inventory/screens/list_product.dart';
+import 'package:skincare_inventory/screens/login.dart';
+import 'package:skincare_inventory/screens/shoplist_form.dart';
+import 'package:pbp_django_auth/pbp_django_auth.dart';
+import 'package:provider/provider.dart';
 
 class ShopItem {
   final String name;
   final IconData icon;
-  // final Color color;
+   final Color color;
 
-  ShopItem(this.name, this.icon);
+  ShopItem(this.name, this.icon, this.color);
 }
 
 class ShopCard extends StatelessWidget {
   final ShopItem item;
 
   const ShopCard(this.item, {super.key}); // Constructor
-
-  Color getButtonColor(ShopItem item) {
-  // Fungsi ini akan mengembalikan warna latar belakang sesuai dengan nama tombol
-    switch (item.name) {
-      case "Lihat Item":
-        return Colors.pink;
-      case "Tambah Item":
-        return Colors.grey;
-      case "Logout":
-        return Colors.pink;
-      default:
-        return Colors.indigo; 
-    }
-  }
-
-  @override
+  
+   @override
   Widget build(BuildContext context) {
+    final request = context.watch<CookieRequest>();
     return Material(
-      color: getButtonColor(item), // Menggunakan fungsi getButtonColor
+      color: item.color, 
       child: InkWell(
         // Area responsive terhadap sentuhan
-        onTap: () {
+        onTap: () async {
           // Memunculkan SnackBar ketika diklik
           ScaffoldMessenger.of(context)
             ..hideCurrentSnackBar()
             ..showSnackBar(SnackBar(
                 content: Text("Kamu telah menekan tombol ${item.name}!")));
+
+          // Navigate ke route yang sesuai (tergantung jenis tombol)
           if (item.name == "Tambah Produk") {
             Navigator.push(
-              context, 
+              context,
               MaterialPageRoute(builder: (context) => ShopFormPage()),
             );
+          } else if (item.name == "Lihat Produk") {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => const ProductPage()));
+          } else if (item.name == "Logout") {
+            final response =
+                await request.logout("http://127.0.0.1:8000/auth/logout/");
+            String message = response["message"];
+            if (response['status']) {
+              String uname = response["username"];
+              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                content: Text("$message Sampai jumpa, $uname."),
+              ));
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => LoginPage()),
+              );
+            } else {
+              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                content: Text("$message"),
+              ));
+            }
           }
-          else if (item.name == "Lihat Produk") {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => const ProductPage()));
-                }
         },
         child: Container(
           // Container untuk menyimpan Icon dan Text
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(8), // Set the border radius here
-            color: getButtonColor(item),
-          ),
           padding: const EdgeInsets.all(8),
           child: Center(
             child: Column(
